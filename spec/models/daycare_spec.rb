@@ -1,38 +1,49 @@
 require 'pry'
-describe 'Owner' do
+describe 'Daycare' do
   before do
-    # @user = User.create(:username => "test 123", :email => "test123@aol.com", :password => "test")
-  # before do
-  #   @figure = Figure.create(:name => "Fiorello LaGuardia")
-  #
-  #   @airport =  Landmark.create(:name => "LG Airport")
-  #   @library = Landmark.create(:name => "Library")
-  #
-  #   @mayor = Title.create(:name => "Mayor")
-  #   @councilman = Title.create(:name => "Councilman")
+    @toddlers = Daycare.create(:age_group => "1")
+    @littles = Daycare.create(:age_group => "2")
+    @pre_teen = Daycare.create(:age_group => "3")
 
+    @adult_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
+    @adult_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter")
+
+    @child_1 = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
+    @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
   end
-# this should test for a name
-# a name should have a first and a last name
-
-  it "has a name" do
-    # expect(@figure.name).to eq("Fiorello LaGuardia")
-  end
-
+  # this should test for an address
+  # an address has numbers and letters
+    it "has an address" do
+       expect(@daycare.address).to eq("7 corporate drive")
+    end
+  # # this should test for a number with an area code
+  # it should have 10 digits
+    it "has a phone number" do
+       expect(@daycare.phone_number).to eq("8005885437")
+    end
 # this should test for associations with parents
   it "has many parents" do
-    # @figure.landmarks << @airport
-    # @figure.landmarks << @library
-    # expect(@figure.landmarks).to include(@airport)
-    # expect(@figure.landmarks).to include(@library)
+    @daycare.parents << @adult_1
+    @daycare.parents << @adult_2
+    expect(@daycare.parents).to include(@adult_1)
+    expect(@daycare.parents).to include(@adult_2)
   end
 # this should test for associations with children
   it "has many children" do
-    # @figure.titles << @mayor
-    # @figure.titles << @councilman
-    # expect(@figure.titles).to include(@mayor)
-    # expect(@figure.titles).to include(@councilman)
-  
+    @daycare.children << @child_1
+    @daycare.children << @child_2
+    expect(@daycare.children).to include(@child_1)
+    expect(@daycare.children).to include(@child_2)
+
+end
+
+it "has many age_groups" do
+  @daycare.age_groups << @toddlers
+  @daycare.age_groups << @littles
+  @daycare.age_groups << @littles
+  expect(@daycare.children).to include(@toddlers)
+  expect(@daycare.children).to include(@littles)
+  expect(@daycare.children).to include(@pre_teen)
 end
 
 # this should test for a secure password and authentication

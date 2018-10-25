@@ -3,6 +3,11 @@ require 'pry'
 describe 'Parent' do
   before do
      @parent = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
+
+     @child_1 = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
+     @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
+
+     @toddlers =  Daycare.create(:age_group => "1")
   end
 # this should test for a name
   it "has a first name" do
@@ -24,23 +29,25 @@ describe 'Parent' do
   end
 # # this should test for an association with a child or children
   it "has many children" do
-    @mayor.figures << @figure
-    expect(@mayor.figures).to include(@figure)
+    @parent.children << @child_1
+    @parent.children << @child_2
+    expect(@parent.children).to include(@child_1)
+    expect(@parent.children).to include(@child_2)
     end
   end
-# # this should test for an association with the daycare
-#   it "belongs to owner" do
-#     # @mayor.figures << @figure
-#     # expect(@mayor.figures).to include(@figure)
-#     # end
-#   end
-#
+# this should test for an association with the daycare
+  it "belongs to age group" do
+    @parent.daycare << @toddlers
+    expect(@parent.daycare).to include(@toddlers)
+    end
+  end
+
 #   # this should test for a secure password and should test that it is authenticated
 #   # authenticated should mean that password belongs to parent
   it 'has a secure password' do
 
     expect(@user.authenticate("nokids")).to eq(false)
-    
+
     expect(@user.authenticate("mubaby")).to eq(@user)
   end
 end
