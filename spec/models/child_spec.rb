@@ -6,11 +6,10 @@ describe 'Child' do
   before do
   #   @user = User.create(:username => "test 123", :email => "test123@aol.com", :password => "test")
   # end
-    before do
-      @figure = Figure.create(:name => "Fiorello LaGuardia")
 
-      @airport =  Landmark.create(:name => "LG Airport", :year_completed => 1950)
-      @library = Landmark.create(:name => "Library")
+  # @figure = Figure.create(:name => "Fiorello LaGuardia")
+  #     @airport =  Landmark.create(:name => "LG Airport", :year_completed => 1950)
+  #     @library = Landmark.create(:name => "Library")
 
     end
 
