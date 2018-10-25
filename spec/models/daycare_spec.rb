@@ -32,7 +32,7 @@ describe 'Owner' do
     # @figure.titles << @councilman
     # expect(@figure.titles).to include(@mayor)
     # expect(@figure.titles).to include(@councilman)
-  end
+  
 end
 
 # this should test for a secure password and authentication
