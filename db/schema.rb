@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181025185650) do
+ActiveRecord::Schema.define(version: 20181025211742) do
 
   create_table "age_groups", force: :cascade do |t|
     t.integer "age_group"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20181025185650) do
     t.string  "first_name"
     t.string  "last_name"
     t.integer "age_group_id"
+    t.integer "daycare_id"
   end
 
   create_table "daycares", force: :cascade do |t|

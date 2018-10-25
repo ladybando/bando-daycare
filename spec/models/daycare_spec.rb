@@ -1,9 +1,9 @@
-require 'pry'
+require 'spec_helper'
 describe 'Daycare' do
   before do
-    @toddlers = Daycare.create(:age_group => "1")
-    @littles = Daycare.create(:age_group => "2")
-    @pre_teen = Daycare.create(:age_group => "3")
+    @toddlers = Daycare.create(:age_group => "1", :address => "7 corporate drive", :phone_number => "8005885437")
+    @littles = Daycare.create(:age_group => "2", :address => "7 corporate drive", :phone_number => "8005885437")
+    @pre_teen = Daycare.create(:age_group => "3", :address => "7 corporate drive", :phone_number => "8005885437")
 
     @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
     @parent_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter")
