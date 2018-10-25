@@ -1,21 +1,30 @@
 require 'pry'
-describe 'User' do
+# child belongs_to parent and daycare
+# may have many-to-many relationship...
+ # separate parent_owner class???
+describe 'Child' do
   before do
-    @user = User.create(:username => "test 123", :email => "test123@aol.com", :password => "test")
-  end
-  it 'can slug the username' do
-    expect(@user.slug).to eq("test-123")
-  end
+  #   @user = User.create(:username => "test 123", :email => "test123@aol.com", :password => "test")
+  # end
+    before do
+      @figure = Figure.create(:name => "Fiorello LaGuardia")
 
-  it 'can find a user based on the slug' do
-    slug = @user.slug
-    expect(User.find_by_slug(slug).username).to eq("test 123")
-  end
+      @airport =  Landmark.create(:name => "LG Airport", :year_completed => 1950)
+      @library = Landmark.create(:name => "Library")
 
-  it 'has a secure password' do
+    end
 
-    expect(@user.authenticate("dog")).to eq(false)
+# this should test for a name
+# a name should include first and last name
+    it "has a name" do
+      # expect(@airport.name).to eq("LG Airport")
+      # expect(@airport.year_completed).to eq(1950)
+    end
 
-    expect(@user.authenticate("test")).to eq(@user)
+    # this should test for assocation with parent
+    it "belongs to a parent" do
+      # @figure.landmarks << @airport
+      # expect(@airport.figure).to eq(@figure)
+    end
   end
 end
