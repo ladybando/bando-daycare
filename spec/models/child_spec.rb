@@ -4,9 +4,9 @@ require 'spec_helper'
  # separate parent_owner class???
 describe 'Child' do
   before do
-    @child = Child.create(:first_name => "Blue Ivy", :last_name => "Carter", :age_group => "1")
-    @adult = Parent.create(:name => "Beyonce Carter")
-    @group =  Daycare.create(:age_group => "1")
+    @child = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
+    @adult = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
+    #@group =  Daycare.create(:age_group => "1")
 
     end
 

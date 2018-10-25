@@ -1,41 +1,46 @@
+
 require 'pry'
 describe 'Parent' do
   before do
-    # @user = User.create(:username => "test 123", :email => "test123@aol.com", :password => "test")
+     @parent = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
   end
 # this should test for a name
-  it "has a name" do
-    # expect(@mayor.name).to eq("Mayor")
+  it "has a first name" do
+     expect(@parent.first_name).to eq("Beyonce")
+  end
+
+  it "has a last name" do
+     expect(@parent.last_name).to eq("Carter")
   end
 # this should test for an address
 # an address has numbers and letters
-  it "has an address" do
-    # expect(@mayor.name).to eq("Mayor")
-  end
-# this should test for a number with an area code
-# it should have 10 digits
-  it "has a phone number" do
-    # expect(@mayor.name).to eq("Mayor")
-  end
-# this should test for an association with a child or children
-  it "has many children" do
-    # @mayor.figures << @figure
-    # expect(@mayor.figures).to include(@figure)
-    # end
-  end
-# this should test for an association with the daycare
-  it "belongs to owner" do
-    # @mayor.figures << @figure
-    # expect(@mayor.figures).to include(@figure)
-    # end
-  end
-
-  # this should test for a secure password and should test that it is authenticated
-  # authenticated should mean that password belongs to parent
-  it 'has a secure password' do
-
-    # expect(@user.authenticate("dog")).to eq(false)
-    #
-    # expect(@user.authenticate("test")).to eq(@user)
-  end
+#   it "has an address" do
+#     # expect(@parent.address).to eq("125 billionaire row")
+#   end
+# # this should test for a number with an area code
+# # it should have 10 digits
+#   it "has a phone number" do
+#     # expect(@mayor.name).to eq("Mayor")
+#   end
+# # this should test for an association with a child or children
+#   it "has many children" do
+#     # @mayor.figures << @figure
+#     # expect(@mayor.figures).to include(@figure)
+#     # end
+#   end
+# # this should test for an association with the daycare
+#   it "belongs to owner" do
+#     # @mayor.figures << @figure
+#     # expect(@mayor.figures).to include(@figure)
+#     # end
+#   end
+#
+#   # this should test for a secure password and should test that it is authenticated
+#   # authenticated should mean that password belongs to parent
+#   it 'has a secure password' do
+#
+#     # expect(@user.authenticate("dog")).to eq(false)
+#     #
+#     # expect(@user.authenticate("test")).to eq(@user)
+#   end
 end
