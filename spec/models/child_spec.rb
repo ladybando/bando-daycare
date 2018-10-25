@@ -4,7 +4,7 @@ require 'spec_helper'
  # separate parent_owner class???
 describe 'Child' do
   before do
-    @child = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
+    @child = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
     @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
     #@group =  Daycare.create(:age_group => "1")
 
@@ -13,7 +13,7 @@ describe 'Child' do
 # this should test for a name
 # a name should include first and last name
     it "has a first name and last name" do
-      expect(@child.first_name).to eq("Blue Ivy")
+      expect(@child.first_name).to eq("Blu Ivy")
       expect(@child.last_name).to eq("Carter")
     end
 

@@ -3,7 +3,7 @@ describe 'Parent' do
   before do
      @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter", :address => "125 billionaire row", :phone_number => "3338675309")
 
-     @child_1 = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
+     @child_1 = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
      @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
 
      @toddlers =  Daycare.create(:age_group => "1")

@@ -8,7 +8,7 @@ describe 'Daycare' do
     @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
     @parent_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter")
 
-    @child_1 = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
+    @child_1 = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
     @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
   end
   # this should test for an address
