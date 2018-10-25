@@ -5,8 +5,8 @@ describe 'Daycare' do
     @littles = Daycare.create(:age_group => "2")
     @pre_teen = Daycare.create(:age_group => "3")
 
-    @adult_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
-    @adult_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter")
+    @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
+    @parent_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter")
 
     @child_1 = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
     @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
@@ -23,10 +23,10 @@ describe 'Daycare' do
     end
 # this should test for associations with parents
   it "has many parents" do
-    @daycare.parents << @adult_1
-    @daycare.parents << @adult_2
-    expect(@daycare.parents).to include(@adult_1)
-    expect(@daycare.parents).to include(@adult_2)
+    @daycare.parents << @parent_1
+    @daycare.parents << @parent_2
+    expect(@daycare.parents).to include(@parent_1)
+    expect(@daycare.parents).to include(@parent_2)
   end
 # this should test for associations with children
   it "has many children" do
@@ -35,23 +35,15 @@ describe 'Daycare' do
     expect(@daycare.children).to include(@child_1)
     expect(@daycare.children).to include(@child_2)
 
-end
-
-it "has many age_groups" do
-  @daycare.age_groups << @toddlers
-  @daycare.age_groups << @littles
-  @daycare.age_groups << @littles
-  expect(@daycare.children).to include(@toddlers)
-  expect(@daycare.children).to include(@littles)
-  expect(@daycare.children).to include(@pre_teen)
-end
-
-# this should test for a secure password and authentication
-# authenticated password should match user
-  it 'has a secure password' do
-
-    expect(@user.authenticate("dog")).to eq(false)
-
-    expect(@user.authenticate("test")).to eq(@user)
   end
+
+  it "has many age_groups" do
+    @daycare.age_groups << @toddlers
+    @daycare.age_groups << @littles
+    @daycare.age_groups << @littles
+    expect(@daycare.children).to include(@toddlers)
+    expect(@daycare.children).to include(@littles)
+    expect(@daycare.children).to include(@pre_teen)
+  end
+
 end

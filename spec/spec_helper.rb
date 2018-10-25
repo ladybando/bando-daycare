@@ -22,5 +22,7 @@ end
 
 ActiveRecord::Base.logger.level = 1
 
-
+def app
+  Rack::Builder.parse_file('config.ru').first
+end
 # Capybara.app = app

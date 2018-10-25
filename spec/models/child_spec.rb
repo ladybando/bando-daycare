@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Child' do
   before do
     @child = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
-    @adult = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
+    @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
     #@group =  Daycare.create(:age_group => "1")
 
     end

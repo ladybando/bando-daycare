@@ -9,6 +9,7 @@ Parents can add additional children online
 Parents have name, address and contact info
 Can sign in and sign out
 has many daycare age groups
+has many children
 will have foreign key
 
 Owner can remove/add children
@@ -22,4 +23,3 @@ child belongs to one of three age groups
 will have foreign key
 
 when a user creates or edits a child, they should also be able to select or create a new parent or daycare age group to associate to that child. In other words, the form for a new child and the form to edit a child should allow the user to select from existing parents and daycare agre groups and create new parents and age groups to associate to the child.
- 

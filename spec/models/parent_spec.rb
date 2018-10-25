@@ -2,52 +2,52 @@
 require 'pry'
 describe 'Parent' do
   before do
-     @parent = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
+     @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter")
 
      @child_1 = Child.create(:first_name => "Blue Ivy", :last_name => "Carter")
      @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
 
      @toddlers =  Daycare.create(:age_group => "1")
   end
-# this should test for a name
-  it "has a first name" do
-     expect(@parent.first_name).to eq("Beyonce")
-  end
 
-  it "has a last name" do
-     expect(@parent.last_name).to eq("Carter")
-  end
+# this should test for a name
+it "has a first name and last name" do
+  expect(@parent_1.first_name).to eq("Beyonce")
+  expect(@parent_1.last_name).to eq("Carter")
+end
+
 # this should test for an address
 # an address has numbers and letters
   it "has an address" do
-     expect(@parent.address).to eq("125 billionaire row")
+     expect(@parent_1.address).to eq("125 billionaire row")
   end
+
 # # this should test for a number with an area code
 # it should have 10 digits
   it "has a phone number" do
-     expect(@parent.phone_number).to eq("3338675309")
+     expect(@parent_1.phone_number).to eq("3338675309")
   end
+
 # # this should test for an association with a child or children
   it "has many children" do
-    @parent.children << @child_1
-    @parent.children << @child_2
-    expect(@parent.children).to include(@child_1)
-    expect(@parent.children).to include(@child_2)
-    end
+    @parent_1.children << @child_1
+    @parent_1.children << @child_2
+    expect(@parent_1.children).to include(@child_1)
+    expect(@parent_1.children).to include(@child_2)
   end
+
 # this should test for an association with the daycare
   it "belongs to age group" do
-    @parent.daycare << @toddlers
-    expect(@parent.daycare).to include(@toddlers)
-    end
+    @parent_1.daycare << @toddlers
+    expect(@parent_1.daycare).to include(@toddlers)
   end
 
 #   # this should test for a secure password and should test that it is authenticated
 #   # authenticated should mean that password belongs to parent
   it 'has a secure password' do
 
-    expect(@user.authenticate("nokids")).to eq(false)
+    expect(@parent_1.authenticate("nokids")).to eq(false)
 
-    expect(@user.authenticate("mubaby")).to eq(@user)
+    expect(@parent_1.authenticate("mubaby")).to eq(@user)
   end
 end
