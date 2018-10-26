@@ -1,16 +1,30 @@
 require 'spec_helper'
-# require 'pry'
-#
-# describe ApplicationController do
-#
-#   describe "Homepage" do
-#     # it 'loads the homepage' do
-#     #   get '/'
-#     #   expect(last_response.status).to eq(200)
-#     #   expect(last_response.body).to include("Welcome to Fwitter")
-#     # end
-#   end
-#
+require 'pry'
+
+describe ApplicationController do
+  let(:parent_first_name) { "Beyonce" }
+  let(:parent_last_name) { "Carter" }
+  let(:group_title) { "Group 1" }
+  before do
+  #  @bando = Daycare.create(:address => "7 corporate drive", :phone_number => "8005885437")
+
+    @bey = Parent.create(:first_name => parent_first_name, :last_name => parent_last_name)
+    #  :address => parent_address, :phone_number => parent_number)
+
+    #@blu = Child.create(:first_name => child_first_name, :last_name => child_last_name)
+
+    @toddler = AgeGroup.create(:title => group_title)
+      # :description => group_desc, :daycare_id => group_daycare)
+  end
+
+  describe "Homepage" do
+    it 'loads the homepage' do
+      get '/'
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include("Welcome to Bando's Daycare!")
+    end
+
+  end
 #   describe "Signup Page" do
 #
 #     it 'loads the signup page' do
@@ -419,4 +433,4 @@ require 'spec_helper'
 #     #   end
 #     # end
 #   end
-# end
+end

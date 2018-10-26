@@ -12,6 +12,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'tux'
 gem 'bcrypt'
+gem 'selenium-webdriver'
 
 group :test do
   gem 'launchy'

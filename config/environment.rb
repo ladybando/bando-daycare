@@ -10,4 +10,5 @@ ActiveRecord::Base.establish_connection(
 
 require_all 'app'
 
+
 #ApplicationController.call

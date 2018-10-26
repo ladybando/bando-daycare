@@ -1,5 +1,5 @@
-require 'config/environment'
-
+require './config/environment'
+require 'sinatra'
 if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 end
