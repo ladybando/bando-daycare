@@ -1,7 +1,7 @@
 class Daycare < ActiveRecord::Base
+  has_many :age_groups
   has_many :children
-  has_one :age_group
-  has_one :parent, :through => :age_group
+  has_many :parents
 
-  binding.pry
+  #binding.pry
 end

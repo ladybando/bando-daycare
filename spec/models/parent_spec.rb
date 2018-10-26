@@ -1,12 +1,15 @@
 require 'spec_helper'
 describe 'Parent' do
   before do
-     @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter", :address => "125 billionaire row", :phone_number => "3338675309")
+    @daycare = Daycare.create(:address => "7 corporate drive", :phone_number => "8005885437")
 
-     @child_1 = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
-     @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
+    @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter", :address => "125 billionaire row", :phone_number => "3338675309")
+    @parent_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter", :address => "125 billionaire row", :phone_number => "3338675309")
 
-     @toddlers =  Daycare.create(:age_group => "1")
+    @toddlers = AgeGroup.create(:title => "Toddlers", :description => "Group 1")
+
+    @child_1 = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
+    @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
   end
 
 # this should test for a name
@@ -35,11 +38,17 @@ end
     expect(@parent_1.children).to include(@child_2)
   end
 
-# this should test for an association with the daycare
-  it "belongs to age group" do
-    @parent_1.daycare << @toddlers
-    expect(@parent_1.daycare).to include(@toddlers)
+  #this should test for an association with the daycare
+  it "belongs to a daycare" do
+    @daycare.parents << @parent_2
+    expect(@parent_2.daycare).to eq(@daycare)
   end
+
+# this should test for an association with the age group
+  # it "belongs to age group" do
+  #   @parent_1.age_group << @toddlers
+  #   expect(@parent_1.daycare).to include(@toddlers)
+  # end
 
 #   # this should test for a secure password and should test that it is authenticated
 #   # authenticated should mean that password belongs to parent
