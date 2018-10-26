@@ -11,6 +11,7 @@ describe 'Parent' do
     @sir = Child.create(:first_name => "Sir", :last_name => "Carter")
 
     @toddler = AgeGroup.create(:title => "toddler", :description => "1", :daycare_id => "1")
+    @littles = AgeGroup.create(:title => "toddler", :description => "1", :daycare_id => "1")
   end
 
 # this should test for a name
@@ -45,12 +46,12 @@ it "belongs to a daycare" do
   expect(@bey.daycare).to eq(@bando)
 end
 
-#this should test for an association with the age group
-#shovel parent instance onto parent table
-#expect parent instance to be a part of age group
-it "belongs to an age group" do
-  @toddler.parents << @bey
-  expect(@bey.age_group).to eq(@toddler)
+
+it "has many age groups" do
+  @bey.age_groups << @toddler
+  @bey.age_groups << @littles
+  expect(@bey.age_groups).to include(@toddler)
+  expect(@bey.age_groups).to include(@littles)
 end
 
 #   # this should test for a secure password and should test that it is authenticated
