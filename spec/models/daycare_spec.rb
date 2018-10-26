@@ -1,5 +1,7 @@
 require 'spec_helper'
+
 describe 'Daycare' do
+
   before do
     @age_group_1 = AgeGroup.create(:title => "toddler", :description => "1", :daycare_id => 1)
     @age_group_2 = AgeGroup.create(:title => "littles", :description => "2", :daycare_id => 1)
@@ -12,16 +14,19 @@ describe 'Daycare' do
     @child_1 = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
     @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
   end
+
   # this should test for an address
   # an address has numbers and letters
     it "has an address" do
        expect(@daycare.address).to eq("7 corporate drive")
     end
+
   # # this should test for a number with an area code
   # it should have 10 digits
     it "has a phone number" do
        expect(@daycare.phone_number).to eq("8005885437")
     end
+
 # this should test for associations with parents
   it "has many parents" do
     @daycare.parents << @parent_1
@@ -29,6 +34,7 @@ describe 'Daycare' do
     expect(@daycare.parents).to include(@parent_1)
     expect(@daycare.parents).to include(@parent_2)
   end
+
 # this should test for associations with children
   it "has many children" do
     @daycare.children << @child_1
@@ -38,11 +44,10 @@ describe 'Daycare' do
 
   end
 
-
-    it "has many age groups" do
-      @daycare.age_groups << @age_group_1
-      @daycare.age_groups << @age_group_2
-      expect(@daycare.age_group).to include(@age_group_1)
-      expect(@daycare.age_group).to include(@age_group_2)
-    end
+  it "has many age groups" do
+    @daycare.age_groups << @age_group_1
+    @daycare.age_groups << @age_group_2
+    expect(@daycare.age_groups).to include(@age_group_1)
+    expect(@daycare.age_groups).to include(@age_group_2)
+  end
 end

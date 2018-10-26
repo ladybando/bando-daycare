@@ -5,7 +5,6 @@ class CreateParent < ActiveRecord::Migration
       t.string :last_name
       t.text :address
       t.text :phone_number
-      t.integer :age_group_id
       t.integer :daycare_id
     end
   end
