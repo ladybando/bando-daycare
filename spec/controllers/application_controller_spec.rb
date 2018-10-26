@@ -341,6 +341,13 @@ require 'spec_helper'
 #         # expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
 #         # expect(page.status_code).to eq(200)
 #       end
+
+# describe "User Model" do
+#   it "responds to authenticate method from has_secure_password" do
+#     @user = User.create(:username => "test123", :password => "test")
+#     expect(@user.authenticate("test")).to be_truthy
+#   end
+# end
 #
 #       it 'does not let a user edit a text with blank content' do
 #       #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")

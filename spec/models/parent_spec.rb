@@ -6,8 +6,6 @@ describe 'Parent' do
     @parent_1 = Parent.create(:first_name => "Beyonce", :last_name => "Carter", :address => "125 billionaire row", :phone_number => "3338675309")
     @parent_2 = Parent.create(:first_name => "Shawn", :last_name => "Carter", :address => "125 billionaire row", :phone_number => "3338675309")
 
-    @toddlers = AgeGroup.create(:title => "Toddlers", :description => "Group 1")
-
     @child_1 = Child.create(:first_name => "Blu Ivy", :last_name => "Carter")
     @child_2 = Child.create(:first_name => "Sir", :last_name => "Carter")
   end
@@ -44,18 +42,18 @@ end
     expect(@parent_2.daycare).to eq(@daycare)
   end
 
-# this should test for an association with the age group
-  # it "belongs to age group" do
-  #   @parent_1.age_group << @toddlers
-  #   expect(@parent_1.daycare).to include(@toddlers)
-  # end
+#this should test for an association with the age group
+  it "belongs to age group" do
+    @parent_1.age_groups << @toddlers
+    expect(@parent_1.daycare).to include(@toddlers)
+  end
 
 #   # this should test for a secure password and should test that it is authenticated
 #   # authenticated should mean that password belongs to parent
-  it 'has a secure password' do
-
-    expect(@parent_1.authenticate("nokids")).to eq(false)
-
-    expect(@parent_1.authenticate("mubaby")).to eq(@user)
-  end
+  # it 'has a secure password' do
+  #
+  #   expect(@parent_1.authenticate("nokids")).to eq(false)
+  #
+  #   expect(@parent_1.authenticate("mubaby")).to eq(@user)
+  # end
 end
