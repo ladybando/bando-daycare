@@ -1,5 +1,7 @@
 require 'spec_helper'
+
 describe 'Parent' do
+
   before do
     @bando = Daycare.create(:address => "7 corporate drive", :phone_number => "8005885437")
 
@@ -38,12 +40,14 @@ end
   end
 
   #this should test for an association with the daycare
-  it "belongs to a daycare" do
-    @bando.parents << @bey
-    expect(@bey.daycare).to eq(@bando)
-  end
+it "belongs to a daycare" do
+  @bando.parents << @bey
+  expect(@bey.daycare).to eq(@bando)
+end
 
 #this should test for an association with the age group
+#shovel parent instance onto parent table
+#expect parent instance to be a part of age group
 it "belongs to an age group" do
   @toddler.parents << @bey
   expect(@bey.age_group).to eq(@toddler)

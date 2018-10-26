@@ -29,8 +29,8 @@ describe 'AgeGroup' do
     #age group table called on daycare instance
     #shovel age group instance onto group table
     #expect age group instance to be a part of daycare
-      @bando.daycares << @toddler
-      expect(@toddler.age_group).to eq(@bando)
+      @bando.age_groups << @toddler
+      expect(@toddler.daycare).to eq(@bando)
   end
 # this should test for associations with parents
   it "has many parents" do
@@ -39,12 +39,12 @@ describe 'AgeGroup' do
     expect(@toddler.parents).to include(@bey)
     expect(@toddler.parents).to include(@jay)
   end
+
 # this should test for associations with children
   it "has many children" do
     @toddler.children << @blu
     @toddler.children << @sir
     expect(@toddler.children).to include(@blu)
     expect(@toddler.children).to include(@sir)
-
   end
 end
