@@ -17,72 +17,74 @@ describe ApplicationController do
       # :description => group_desc, :daycare_id => group_daycare)
   end
 
+
   describe "Homepage" do
-    it 'loads the homepage' do
-      get '/'
-      expect(last_response.status).to eq(200)
-      expect(last_response.body).to include("Welcome to Bando's Daycare!")
+      it 'loads the homepage' do
+        get '/'
+        expect(last_response.status).to eq(200)
+        expect(last_response.body).to include("Welcome to Bando's Daycare!")
+      end
+    end
+    
+    describe "Signup Page" do
+
+      it 'loads the signup page' do
+        get '/signup'
+        expect(last_response.status).to eq(200)
+      end
+
+      it 'signup directs user to daycare index' do
+        params = {
+          :username => "bubbles",
+          :email => "bubbles@aol.com",
+          :password => "loveable"
+        }
+        post '/signup', params
+        expect(last_response.location).to include("/daycare")
+      end
+
+      it 'does not let a user sign up without a username' do
+        params = {
+          :username => "",
+          :email => "bubbles@aol.com",
+          :password => "loveable"
+        }
+        post '/signup', params
+        expect(last_response.location).to include('/signup')
+      end
+
+      it 'does not let a user sign up without an email' do
+        params = {
+          :username => "bubbles",
+          :email => "",
+          :password => "rainbows"
+        }
+        post '/signup', params
+        expect(last_response.location).to include('/signup')
+      end
+
+      it 'does not let a user sign up without a password' do
+        params = {
+          :username => "bubbles",
+          :email => "bubbles@aol.com",
+          :password => ""
+        }
+        post '/signup', params
+        expect(last_response.location).to include('/signup')
+      end
+
+      it 'creates a new user and logs them in on valid submission and does not let a logged in user view the signup page' do
+        params = {
+          :username => "bubbles",
+          :email => "bubbles@aol.com",
+          :password => "loveable"
+        }
+        post '/signup', params
+        get '/signup'
+        expect(last_response.location).to include('/daycare')
+      end
     end
 
-  end
-  describe "Signup Page" do
-
-    it 'loads the signup page' do
-      get '/signup'
-      expect(last_response.status).to eq(200)
-    end
-
-    it 'signup directs user to twitter index' do
-      params = {
-        :username => "skittles123",
-        :email => "skittles@aol.com",
-        :password => "rainbows"
-      }
-      post '/signup', params
-      expect(last_response.location).to include("/tweets")
-    end
-
-    it 'does not let a user sign up without a username' do
-      params = {
-        :username => "",
-        :email => "skittles@aol.com",
-        :password => "rainbows"
-      }
-      post '/signup', params
-      expect(last_response.location).to include('/signup')
-    end
-
-    it 'does not let a user sign up without an email' do
-      params = {
-        :username => "skittles123",
-        :email => "",
-        :password => "rainbows"
-      }
-      post '/signup', params
-      expect(last_response.location).to include('/signup')
-    end
-
-    it 'does not let a user sign up without a password' do
-      params = {
-        :username => "skittles123",
-        :email => "skittles@aol.com",
-        :password => ""
-      }
-      post '/signup', params
-      expect(last_response.location).to include('/signup')
-    end
-
-    it 'creates a new user and logs them in on valid submission and does not let a logged in user view the signup page' do
-      params = {
-        :username => "skittles123",
-        :email => "skittles@aol.com",
-        :password => "rainbows"
-      }
-      post '/signup', params
-      get '/signup'
-      expect(last_response.location).to include('/tweets')
-    end
-  end
 
 #   describe "login" do
 #     # it 'loads the login page' do

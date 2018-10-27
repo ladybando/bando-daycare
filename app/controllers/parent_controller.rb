@@ -1,6 +1,6 @@
 class ParentController < ApplicationController
 
-  get '/children' do
+  get '/daycare' do
     if logged_in?
       @child = Child.all
       erb :'/parent/index'
