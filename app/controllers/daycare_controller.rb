@@ -1,0 +1,2 @@
+class DaycareController < ApplicationController
+end
