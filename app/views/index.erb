@@ -1,1 +1,17 @@
-<h1>Welome to Bando's Daycare!</h1>
+<% if !logged_in? %>
+   <p> Please sign up or log in below: </p>
+   <%end %>
+    <nav>
+     <% if logged_in? %>
+     <h2>Welcome, Parent</h2><br>
+     <p>Edit or add more children on your Child's Info page,</p>
+       <a href="/parents/new"> Child Info </a>
+      <p>Make payments,</p>
+       <a href="/logout"> Pay Bills </a>
+       <p>Or log out if you're all set!</p>
+       <a href="/logout"> Log Out </a><br>
+      <% else %>
+       <a href="/signup">Sign Up</a><br>
+       <a href="/login"> Log In </a><br>
+     <%end %>
+    </nav
