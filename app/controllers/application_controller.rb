@@ -28,6 +28,10 @@ end
       @current_user ||= Daycare.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
    end
 
+   def current_family
+     @current_family ||= Parent.find_by(id: session[:user_id]) ||  Child.find_by(id: session[:user_id]) if session[:user_id]
+   end
+
   #   def age_group(age)
   #     age = gets.strip.to_i
   #     if age.between?(0-5)

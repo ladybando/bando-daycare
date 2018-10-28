@@ -1,4 +1,11 @@
 <h3>This page under construction! Check back later</h3>
 
-<a href="/"> Home </a><br>
-<a href="/logout"> Log Out </a><br>
+<p><%= @parent.first_name %></p>
+<form method="post" action="/daycare/<%=@parent.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Parent"><br>
+</form>
+
+<br><a href="/daycare/<%=@parent.id%>/edit"> Edit Parent </a><br>
+<a href="/daycare"> Home </a><br>
+<a href="/logout"> Log Out </a>

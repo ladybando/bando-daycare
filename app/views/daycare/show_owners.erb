@@ -1,9 +1,9 @@
-<p><%= @daycare.username %></p>
-<form method="post" action="/daycare/<%=@daycare.id%>/delete">
+<p><%= @owners.username %></p>
+<form method="post" action="/daycare/<%=@owners.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Tweet"><br>
+  <input type="submit" value="Delete Owner"><br>
 </form>
 
-<br><a href="/daycare/<%=@daycare.id%>/edit"> Edit Owner </a><br>
+<br><a href="/daycare/<%=@owners.id%>/edit"> Edit Owner </a><br>
 <a href="/daycare"> Home </a><br>
 <a href="/logout"> Log Out </a>

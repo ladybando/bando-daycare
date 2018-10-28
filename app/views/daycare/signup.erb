@@ -1,19 +1,15 @@
+<h2>Welcome to Bando Daycare!</h2><br>
 
-<head>
-  <title>Create Account</title>
-</head>
-<h3>Create Account</h3>
-<% if !logged_in? %>
+<h4>We are pleased you chose to join our team!</h4>
+<h4>Please complete the form below to get started:</h4>
  <% unless locals.empty? %>
   <%= message %>
   <% end %>
-<% end %>
-<h4>Please complete the form below to get started!</h4>
 
  <br></br>
-<form action="/signup" method="POST">
+<form action="daycare/signup" method="POST">
   <p>Name: <input type="text" name="username"></p>
   <p>Email: <input type="text" name="email"></p>
   <p>Password: <input type="text" name="password"></p>
   <input class="btn btn-primary" type="submit">
-</form
+</form>

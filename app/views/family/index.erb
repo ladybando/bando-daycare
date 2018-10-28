@@ -1,10 +1,27 @@
-<h2>Login to Your Account</h2>
-<form method="post" action="/login">
-  <input type="text" name="username" placeholder="Username:">
-  <input type="text" name="password" placeholder="Password:">
-   <input class="btn btn-primary" type="submit">
-</form>
+<h1>Welcome, <%= current_parent.username %></h1>
+<p>This is your parent hub. You can make changes below:</p><br>
 
+<br><a href="/family/create_client">Add Child</a>
+<br><a href="/family/show_client">View Child(ren)</a>
+<br><a href="/family/pay_bills">Make Payment</a>
 
-<a href="/"> Home </a><br>
+<br><a href="/"> Home </a><br>
 <a href="/logout"> Log Out </a><br>
+
+<% if !logged_in? %>
+   <p> Please sign up or log in below: </p>
+   <%end %>
+    <nav>
+     <% if logged_in? %>
+     <h2>Welcome, Parent</h2><br>
+     <p>Edit or add more children on your Child's Info page,</p>
+       <a href="/family/create_client"> Child Info </a>
+      <p>Make payments,</p>
+       <a href="/family/create_client"> Pay Bills </a>
+       <p>Or log out if you're all set!</p>
+       <a href="/logout"> Log Out </a><br>
+      <% else %>
+       <a href="/signup">Sign Up</a><br>
+       <a href="/login"> Log In </a><br>
+     <%end %>
+    </nav
