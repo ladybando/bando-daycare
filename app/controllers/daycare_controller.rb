@@ -35,6 +35,7 @@ class DaycareController < ApplicationController
 end
 
 post '/daycare' do
+  binding.pry
   if logged_in?
     if params[:username] == ""
       redirect to "/daycare/create_owners"
@@ -75,7 +76,7 @@ end
 
 get '/login' do
   if !logged_in?
-    erb :'/daycare/index'
+    erb :'/index'
   else
     redirect to '/daycare'
   end
