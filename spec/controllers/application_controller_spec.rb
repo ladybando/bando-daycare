@@ -70,72 +70,72 @@ describe ApplicationController do
     end
 
 
-#   describe "login" do
-#     # it 'loads the login page' do
-#     #   get '/login'
-#     #   expect(last_response.status).to eq(200)
-#     end
-#
-#     it 'loads the tweets index after login' do
-#       # user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-#       # params = {
-#       #   :username => "becky567",
-#       #   :password => "kittens"
-#       # }
-#       # post '/login', params
-#       # expect(last_response.status).to eq(302)
-#       # follow_redirect!
-#       # expect(last_response.status).to eq(200)
-#       # expect(last_response.body).to include("Welcome,")
-#     end
-#
-#     it 'does not let user view login page if already logged in' do
-#     #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-#     #   params = {
-#     #     :username => "becky567",
-#     #     :password => "kittens"
-#     #   }
-#     #   post '/login', params
-#     #   get '/login'
-#     #   expect(last_response.location).to include("/tweets")
-#     # end
-#   end
-#
-#   describe "logout" do
-#     # it "lets a user logout if they are already logged in" do
-#     #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-#     #
-#     #   params = {
-#     #     :username => "becky567",
-#     #     :password => "kittens"
-#     #   }
-#     #   post '/login', params
-#     #   get '/logout'
-#     #   expect(last_response.location).to include("/login")
-#     end
-#
-#     it 'does not let a user logout if not logged in' do
-#     #   get '/logout'
-#     #   expect(last_response.location).to include("/")
-#     # end
-#     #
-#     # it 'does not load /tweets if user not logged in' do
-#     #   get '/tweets'
-#     #   expect(last_response.location).to include("/login")
-#     end
-#
-#     it 'does load /tweets if user is logged in' do
-#     #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-#     #
-#     #
-#     #   visit '/login'
-#     #
-#     #   fill_in(:username, :with => "becky567")
-#     #   fill_in(:password, :with => "kittens")
-#     #   click_button 'submit'
-#     #   expect(page.current_path).to eq('/tweets')
-#     # end
-#   end
+  describe "login" do
+    it 'loads the login page' do
+      get '/login'
+      expect(last_response.status).to eq(200)
+    end
+
+    it 'loads the owners after login' do
+      owner = Daycare.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+      params = {
+        :username => "becky567",
+        :password => "kittens"
+      }
+      post '/login', params
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include("Welcome,")
+    end
+
+    it 'does not let user view login page if already logged in' do
+    #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+    #   params = {
+    #     :username => "becky567",
+    #     :password => "kittens"
+    #   }
+    #   post '/login', params
+    #   get '/login'
+    #   expect(last_response.location).to include("/tweets")
+    # end
+  end
+
+  describe "logout" do
+    # it "lets a user logout if they are already logged in" do
+    #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+    #
+    #   params = {
+    #     :username => "becky567",
+    #     :password => "kittens"
+    #   }
+    #   post '/login', params
+    #   get '/logout'
+    #   expect(last_response.location).to include("/login")
+    end
+
+    it 'does not let a user logout if not logged in' do
+    #   get '/logout'
+    #   expect(last_response.location).to include("/")
+    # end
+    #
+    # it 'does not load /tweets if user not logged in' do
+    #   get '/tweets'
+    #   expect(last_response.location).to include("/login")
+    end
+
+  #  it 'does load /tweets if user is logged in' do
+    #   user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+    #
+    #
+    #   visit '/login'
+    #
+    #   fill_in(:username, :with => "becky567")
+    #   fill_in(:password, :with => "kittens")
+    #   click_button 'submit'
+    #   expect(page.current_path).to eq('/tweets')
+    # end
+    end
 #
 #   describe 'user show page' do
 #     it 'shows all a single users tweets' do

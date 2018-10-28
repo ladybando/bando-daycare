@@ -1,3 +1,4 @@
+require "pry"
 class DaycareController < ApplicationController
   get '/signup' do
     erb :'/signup'
@@ -12,7 +13,7 @@ class DaycareController < ApplicationController
   end
 
   post '/signup' do
-    #binding.pry
+    binding.pry
     owner = Daycare.new(:username => params[:username], :password => params[:password], :email => params[:email])
     if owner.save && owner.username!= "" && owner.email!="" && owner.password!=""
       Daycare.create(:username => params[:username], :password => params[:password], :email => params[:email])
@@ -24,17 +25,17 @@ class DaycareController < ApplicationController
   end
 
   get '/daycare' do
-    #bindin#g.pry
+    bindin#g.pry
   if logged_in?
-    @child = Child.all
-    @parent = Parent.all
-    redirect to '/daycare/show_client'
+    @owner = Daycare.all
+    redirect to '/daycare/show_owners'
   else
     redirect to '/login'
   end
 end
 
 post '/daycare' do
+binding.pry
   if logged_in?
     if params[:username] == ""
       redirect to "/daycare/show_client"
@@ -55,8 +56,8 @@ get '/daycare/index' do
   erb :'/daycare/index'
 end
 
-get '/daycare/show_client' do
-  erb :'/daycare/show_client'
+get '/daycare/show_owners' do
+  erb :'/daycare/show_owners'
 end
 
 get '/login' do
