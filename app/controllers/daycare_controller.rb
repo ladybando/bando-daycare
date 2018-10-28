@@ -34,6 +34,23 @@ class DaycareController < ApplicationController
   end
 end
 
+post '/daycare' do
+  if logged_in?
+    if params[:username] == ""
+      redirect to "/daycare/show_client"
+    else
+      @owner = current_user.daycares.create(name: params[:username])
+      if @owner.save
+        redirect to "/daycare/#{@owner.id}"
+      else
+        redirect to "/tweets/new"
+      end
+    end
+  else
+    redirect to '/login'
+  end
+end
+
 get '/daycare/index' do
   erb :'/daycare/index'
 end

@@ -4,9 +4,11 @@ class FamilyController < ApplicationController
     erb :'/family/index'
   end
 
-
-
   get '/family/create_client' do
     erb :'/family/create_client'
+  end
+ 
+  post '/family/create_client' do
+    
   end
 end
