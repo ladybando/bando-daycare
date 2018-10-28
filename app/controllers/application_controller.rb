@@ -26,8 +26,7 @@ end
       # @daycare = Daycare.find_by(id: session[:user_id])
       # @current_user ||= @parent || @daycare  if session[:user_id] #searches for if user is owner or parent
       @current_user ||= Daycare.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
-binding.pry
-    end
+   end
 
   #   def age_group(age)
   #     age = gets.strip.to_i

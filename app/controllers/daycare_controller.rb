@@ -12,7 +12,7 @@ class DaycareController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
+    #binding.pry
     owner = Daycare.new(:username => params[:username], :password => params[:password], :email => params[:email])
     if owner.save && owner.username!= "" && owner.email!="" && owner.password!=""
       Daycare.create(:username => params[:username], :password => params[:password], :email => params[:email])
@@ -28,10 +28,18 @@ class DaycareController < ApplicationController
   if logged_in?
     @child = Child.all
     @parent = Parent.all
-    erb :'/daycare/index'
+    redirect to '/daycare/show_client'
   else
     redirect to '/login'
   end
+end
+
+get '/daycare/index' do
+  erb :'/daycare/index'
+end
+
+get '/daycare/show_client' do
+  erb :'/daycare/show_client'
 end
 
 get '/login' do
@@ -60,5 +68,4 @@ get '/logout' do
      redirect to '/'
    end
  end
-
 end
