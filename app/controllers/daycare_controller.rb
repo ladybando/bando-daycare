@@ -13,7 +13,7 @@ class DaycareController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
+    #binding.pry
     owner = Daycare.new(:username => params[:username], :password => params[:password], :email => params[:email])
     if owner.save && owner.username!= "" && owner.email!="" && owner.password!=""
       Daycare.create(:username => params[:username], :password => params[:password], :email => params[:email])
@@ -25,39 +25,52 @@ class DaycareController < ApplicationController
   end
 
   get '/daycare' do
-    bindin#g.pry
+  #  binding.pry
   if logged_in?
     @owner = Daycare.all
-    redirect to '/daycare/show_owners'
+    redirect to '/daycare/index'
   else
     redirect to '/login'
   end
 end
 
 post '/daycare' do
-binding.pry
   if logged_in?
     if params[:username] == ""
-      redirect to "/daycare/show_client"
+      redirect to "/daycare/create_owners"
     else
       @owner = current_user.daycares.create(name: params[:username])
       if @owner.save
         redirect to "/daycare/#{@owner.id}"
       else
-        redirect to "/tweets/new"
+        redirect to "/daycare/create_owner"
       end
     end
   else
     redirect to '/login'
   end
+  binding.pry
 end
 
-get '/daycare/index' do
-  erb :'/daycare/index'
+get '/daycare/:id' do
+  if logged_in?
+    @owner = Daycare.find_by_id(params[:id])
+    erb :'/daycare/show_owners'
+  else
+    redirect to '/login'
+  end
 end
 
 get '/daycare/show_owners' do
   erb :'/daycare/show_owners'
+end
+
+get '/daycare/create_owner' do
+  erb :'/daycare/create_owner'
+end
+
+post '/daycare/create_owner' do
+  erb :'/daycare/create_owner'
 end
 
 get '/login' do

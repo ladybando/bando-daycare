@@ -1,15 +1,9 @@
-<h1>Welcome, <%= current_user.username %></h1>
-<p>Find current owners below:<br>
-<% @daycare = Daycare.all %>
-<% @daycare.each do |owner| %>
-  <div>
-    <%= owner.username %><br>
-    <% end %>
-  </div>
+<p><%= @tweet.content %></p>
+<form method="post" action="/tweets/<%=@tweet.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Tweet"><br>
+</form>
 
-<br><a href="/family/create_client">Add New Client</a><br>
-<br><a href="/daycare/create_owner">Add New Owner</a><br>
-
-<a href="/"> Home </a><br>
-<a href="/logout"> Log Out </a><br>
-  
+<br><a href="/tweets/<%=@tweet.id%>/edit">Edit Tweet </a><br>
+<a href="/tweets"> Home </a><br>
+<a href="/logout"> Log Out </a>

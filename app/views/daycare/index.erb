@@ -1,7 +1,14 @@
+<h1>Welcome, <%= current_user.username %></h1>
+<p>Find current owners below:<br>
+<% @daycare = Daycare.all %>
+<% @daycare.each do |owner| %>
+  <div>
+    <%= owner.username %><br>
+    <% end %>
+  </div>
 
-<h2>Login to Your Account</h2>
-<form method="post" action="/login">
-  <input type="text" name="username" placeholder="Username:">
-  <input type="text" name="password" placeholder="Password:">
-   <input class="btn btn-primary" type="submit">
-</form>
+<br><a href="/family/create_client">Add New Client</a>
+<br><a href="/daycare/create_owner">Add New Owner</a><br>
+
+<a href="/"> Home </a><br>
+<a href="/logout"> Log Out </a><br>
