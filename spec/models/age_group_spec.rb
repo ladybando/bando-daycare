@@ -33,12 +33,12 @@ describe 'AgeGroup' do
       expect(@toddler.daycare).to eq(@bando)
   end
 # this should test for associations with parents
-  it "has many parents" do
-    @toddler.parents << @bey
-    @toddler.parents << @jay
-    expect(@toddler.parents).to include(@bey)
-    expect(@toddler.parents).to include(@jay)
-  end
+  # it "has many parents" do
+  #   @toddler.parents << @bey
+  #   @toddler.parents << @jay
+  #   expect(@toddler.parents).to include(@bey)
+  #   expect(@toddler.parents).to include(@jay)
+  # end
 
 # this should test for associations with children
   it "has many children" do

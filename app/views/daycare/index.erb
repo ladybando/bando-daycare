@@ -1,8 +1,4 @@
-<h3>Sign Up</h3>
-<form action="/signup" method="POST">
-  <input type="text" name="username" placeholder="Username:">
-  <input type="text" name="email" placeholder="Email:">
-  <input type="password" name="password" placeholder="Password:">
-  <input type="submit" value="Sign Up">
+<p> Welcome, <%= current_user.username %><br>
 
-</form>
+<br><a href="/daycare/create_client">Add New Client</a><br>
+<a href="/logout"> Log Out </a>
