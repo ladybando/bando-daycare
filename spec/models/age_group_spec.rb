@@ -34,6 +34,7 @@ describe 'AgeGroup' do
   end
 # this should test for associations with parents
   it "has many parents" do
+    
     @toddler.parents << @bey
     @toddler.parents << @jay
     expect(@toddler.parents).to include(@bey)
