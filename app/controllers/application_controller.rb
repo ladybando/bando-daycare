@@ -25,11 +25,7 @@ end
       # @parent = Parent.find_by(id: session[:user_id])
       # @daycare = Daycare.find_by(id: session[:user_id])
       # @current_user ||= @parent || @daycare  if session[:user_id] #searches for if user is owner or parent
-      @current_user ||= Daycare.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
-   end
-
-   def current_family
-     @current_family ||= Parent.find_by(id: session[:user_id]) ||  Child.find_by(id: session[:user_id]) if session[:user_id]
+      @current_user ||= Parent.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
    end
 
   #   def age_group(age)

@@ -1,7 +1,7 @@
 require "pry"
 class DaycareController < ApplicationController
   get '/signup' do
-    erb :'/signup'
+    erb :'daycare/signup'
   end
 
   get '/signup' do
@@ -13,29 +13,38 @@ class DaycareController < ApplicationController
   end
 
   post '/signup' do
-    #binding.pry
+    parent = Parent.new(:username => params[:username], :password => params[:password], :email => params[:email])
     owner = Daycare.new(:username => params[:username], :password => params[:password], :email => params[:email])
     if owner.save && owner.username!= "" && owner.email!="" && owner.password!=""
       Daycare.create(:username => params[:username], :password => params[:password], :email => params[:email])
       session[:user_id] = owner.id
-      redirect to '/daycare'
-    else
-      redirect to '/signup'
+        redirect to '/daycare'
+        if parent.save && parent.username!= "" && parent.email!="" && parent.password!=""
+          Parent.create(:username => params[:username], :password => params[:password], :email => params[:email])
+          session[:user_id] = parent.id
+            redirect to '/family'
+      else
+        redirect to '/signup'
+    end
+      else
+        redirect to '/signup'
     end
   end
 
   get '/login' do
     if !logged_in?
-      erb :'/daycare/login'
-    else
+      erb :'/login'
+    elsif logged_in? && current_user == owner
       redirect to '/daycare'
+    else
+      redirect to '/family'
     end
   end
 
   get '/daycare' do
    #binding.pry
   if logged_in?
-    @owners = Daycare.all
+    @owners = Parent.all
     erb :'/daycare/index'
   else
     redirect to '/login'
@@ -43,36 +52,35 @@ class DaycareController < ApplicationController
 end
 
 post '/daycare' do
+  binding.pry
   if logged_in?
     if params[:username] == "" || params[:password] == ""
-      redirect to "/daycare/create_owner"
-    else
-      @owners = current_user.daycares.create(name: params[:username], password: params[:password])
-      if @owners.save
-        redirect to "/daycare/#{@owners.id}"
+      redirect to '/family/create_client'
+    else @parent= current_user.parentss.create(username: params[:username], password: params[:password])
+      if @parent.save
+        redirect to "/daycare/#{@parent.id}"
       else
-        redirect to "/daycare/create_owner"
+        redirect to '/daycare/create_owner'
       end
     end
   else
-    redirect to '/login'
+    redirect to '/family/login'
   end
-  #binding.pry
 end
 
 get '/daycare/:id' do
   if logged_in?
-    @owners = Daycare.find_by_id(params[:id])
-    erb :'/daycare/show_owners'
+    @parents = Parent.find_by_id(params[:id])
+    erb :'/daycare/create_owner'
   else
-    redirect to '/login'
+    redirect to '/'
   end
 end
 
 post "/login" do
-  @owners = Daycare.find_by(:username => params[:username])
-  if @owners && @owners.authenticate(params[:password])
-    session[:user_id] = @owners.id
+  @parents = Parent.find_by(:username => params[:username])
+  if @parents && @parents.authenticate(params[:password])
+    session[:user_id] = @parents.id
     redirect to "/daycare"
   else
     redirect to "/signup"
@@ -90,9 +98,9 @@ get '/logout' do
 
  delete '/daycare/:id/delete' do
   if logged_in?
-    @owners = Daycare.find_by_id(params[:id])
-    if @owners && @owners.username == current_user
-        @owners.delete
+    @parents = Parent.find_by_id(params[:id])
+    if @parents && @parents.username == current_user
+        @parents.delete
       end
       redirect to '/daycare'
     else

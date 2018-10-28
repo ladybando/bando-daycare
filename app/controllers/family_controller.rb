@@ -8,42 +8,15 @@ class FamilyController < ApplicationController
     erb :'/family/create_client'
   end
 
-  get 'family/signup' do
-    if !logged_in?
-      erb :'/signup', locals: {message: "OOPS, maybe your password is incorrect! Please create an account\, before you log in!"}
-    else
-      redirect to '/family'
-    end
-  end
-
-  post 'family/signup' do
-    #binding.pry
-    parent =  Parent.new(:username => params[:username], :password => params[:password], :email => params[:email])
-    if parent.save && parent.username!= "" && parent.email!="" && parent.password!=""
-      Parent.create(:username => params[:username], :password => params[:password], :email => params[:email])
-      session[:user_id] = parent.id
-      redirect to '/family'
-    else
-      redirect to '/signup'
-    end
-  end
-
-  post "/family/login" do
-    @parents = Parents.find_by(:username => params[:username])
-    if @parents && @parents.authenticate(params[:password])
-      session[:user_id] = @parents.id
-      redirect to "/family"
-    else
-      redirect to "/signup"
-    end
-  end
 
   post '/family/create_client' do
+  #  binding.pry
+
     if logged_in?
       if params[:first_name] == "" || params[:last_name] == "" || params[:address] == "" || params[:phone_number] == ""
         redirect to '/family/create_client'
-      else @parents = current_user.parents.create(first_name: params[:first_name], last_name: params[:last_name], address: params[:address], phone_number: params[:phone_number]  ) && @child = current_user.children.create(first_name: params[:first_name], last_name: params[:last_name])
-        if @parents.save && @children.save
+      else @parents = current_user.parents.create(first_name: params[:first_name], last_name: params[:last_name], address: params[:address], phone_number: params[:phone_number])
+        if @parents.save
           redirect to "/family/#{@parents.id}"
         else
           redirect to '/family/create_client'
