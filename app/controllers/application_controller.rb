@@ -1,8 +1,13 @@
 require "pry"
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+
+  configure do
+  set :public_folder, 'public'
+  set :views, 'app/views'
+  enable :sessions
   set :session_secret, "cookie_monster_saver"
-  set :views, Proc.new { File.join(root, "../views/") }
+end
 
   get '/' do
     erb :index
@@ -20,7 +25,8 @@ class ApplicationController < Sinatra::Base
       # @parent = Parent.find_by(id: session[:user_id])
       # @daycare = Daycare.find_by(id: session[:user_id])
       # @current_user ||= @parent || @daycare  if session[:user_id] #searches for if user is owner or parent
-      @current_user ||= User.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
+      @current_user ||= Daycare.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
+binding.pry
     end
 
   #   def age_group(age)

@@ -7,16 +7,16 @@ class DaycareController < ApplicationController
     if logged_in?
       redirect to '/daycare'
     else
-      erb :'/daycare/new_client'
+      erb :'/signup'
     end
   end
 
   post '/signup' do
-    #binding.pry
-    client = Parent.new(:username => params[:username], :password => params[:password], :email => params[:email])
-    if client.save && client.username!= "" && client.email!="" && client.password!=""
-      Parent.create(:username => params[:username], :password => params[:password], :email => params[:email])
-      session[:user_id] = client.id
+    binding.pry
+    owner = Daycare.new(:username => params[:username], :password => params[:password], :email => params[:email])
+    if owner.save && owner.username!= "" && owner.email!="" && owner.password!=""
+      Daycare.create(:username => params[:username], :password => params[:password], :email => params[:email])
+      session[:user_id] = owner.id #search for session[:user_id] to correct error for views/daycare/index
       redirect to '/daycare'
     else
       redirect to '/signup'

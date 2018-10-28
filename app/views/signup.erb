@@ -1,10 +1,19 @@
-<h3>Create Account</h3>
 
+<head>
+  <title>Create Account</title>
+</head>
+ <h3>Create Account</h3>
+<% if !logged_in? %>
+ <% unless locals.empty? %>
+  <%= message %>
+  <% end %>
+<% end %>
 <h4>Please complete the form below to get started!</h4>
-<form action="/signup" method="POST">
-  <input type="text" name="username" placeholder="Username:">
-  <input type="text" name="email" placeholder="Email:">
-  <input type="password" name="password" placeholder="Password:">
-  <input type="submit" value="Sign Up">
 
-</form>
+ <br></br>
+<form action="/signup" method="POST">
+  <p>Name: <input type="text" name="username"></p>
+  <p>Email: <input type="text" name="email"></p>
+  <p>Password: <input type="text" name="password"></p>
+  <input class="btn btn-primary" type="submit">
+</form
