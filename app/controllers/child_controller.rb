@@ -10,10 +10,14 @@ class FamilyController < ApplicationController
   end
 
   get '/children/new' do
-    erb :'/children/create_children'
+    if logged_in?
+      erb :'/children/create_children'
+    else
+      redirect to '/login'
+    end
   end
 
-  get '/daycare/:id' do
+  get '/children/:id' do
     binding.pry
     if logged_in?
       @parents = Parent.find_by_id(params[:id])
@@ -23,7 +27,7 @@ class FamilyController < ApplicationController
     end
   end
 
-  get '/daycare/:id/edit' do
+  get '/children/:id/edit' do
     if logged_in?
       @parents = Parent.find_by_id(params[:id])
     if @parent && @parent.username == current_user
@@ -80,7 +84,7 @@ class FamilyController < ApplicationController
         if @child && @child.first_name == current_user
           @child.delete
         end
-        redirect to '/family'
+        redirect to '/children'
       else
         redirect to '/login'
       end

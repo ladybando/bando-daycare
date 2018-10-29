@@ -7,5 +7,5 @@ end
 use Rack::MethodOverride
 
 run ApplicationController
-use DaycareController
-use FamilyController
+use ParentController
+use ChildController

@@ -1,5 +1,5 @@
 require "pry"
-class DaycareController < ApplicationController
+class ParentController < ApplicationController
 
   get '/signup' do
     if !logged_in?
@@ -28,7 +28,7 @@ class DaycareController < ApplicationController
     end
   end
 
-  get '/daycare' do
+  get '/parent' do
    #binding.pry
     if logged_in?
         @parents = Parent.all
@@ -57,7 +57,7 @@ get '/logout' do
    end
  end
 
- delete '/daycare/:id/delete' do
+ delete '/parent/:id/delete' do
   if logged_in?
     @child = Child.find_by_id(params[:id])
     @child == current_user
