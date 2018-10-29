@@ -85,4 +85,14 @@ get '/logout' do
       redirect to '/login'
     end
   end
+
+  get '/password' do
+    @password = params[:password]
+    unless @password.errors?
+      redirect to '/daycare'
+    else
+      output = @password.errors.join("; ")
+    end
+  end
+
 end

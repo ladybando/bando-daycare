@@ -1,5 +1,6 @@
 <h2> Edit Child </h2>
 <form method="post" action="/children/<%=@child.id%>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <input type="text" name="name" value="<%= @child.first_name %>">
   <input type="text" name="name" value="<%= @child.last_name %>">
   <input type="submit" value="submit">

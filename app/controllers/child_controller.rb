@@ -26,7 +26,7 @@ class ChildController < ApplicationController
     end
   end
 
-  get '/family/:id/edit' do
+  patch '/family/:id/edit' do
     if logged_in?
       @parents = Parent.find_by_id(params[:id])
     if @parent && @parent.username == current_user
@@ -70,12 +70,6 @@ class ChildController < ApplicationController
   end
 
   delete '/children/:id/delete' do
-   # if logged_in?
-   #   @child = Child.find_by_id(params[:id])
-   #   @child == current_user
-   #   @child.delete
-   #   redirect '/children'
-   # end
    if logged_in?
      @child = Child.find_by_id(params[:id])
      if @child && @child.first_name == current_user

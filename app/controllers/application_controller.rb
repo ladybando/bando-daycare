@@ -28,19 +28,5 @@ end
       @current_user ||= Parent.find_by(id: session[:user_id])  if session[:user_id] #must refactor no user class
    end
 
-  #   def age_group(age)
-  #     age = gets.strip.to_i
-  #     if age.between?(0-5)
-  #       age = @toddlers
-  #     elsif age.between?(6-10)
-  #       age = @littles
-  #     else age.between?(10-15)
-  #       age = @pre_teen
-  #     end
-  #   end
-  #
-  #   def call
-  #     age_group(age)
-  #   end
    end
 end
