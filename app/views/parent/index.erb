@@ -1,0 +1,12 @@
+<h1>Welcome, <%= current_user.username %></h1>
+<p>This is your parent hub.</p><br>
+
+<p>Find all parents associated with your account below:<br>
+<% @parents.each do |parent| %>
+  <div>
+    <%= parent.username%><br>
+    <% end %>
+  </div>
+
+
+<a href="/logout"> Log Out </a><br>

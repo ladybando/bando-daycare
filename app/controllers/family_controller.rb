@@ -1,14 +1,42 @@
 class FamilyController < ApplicationController
 
-  get '/family' do
-    erb :'/family/index'
+  get '/children' do
+    if logged_in?
+        @children = Child.all
+      erb :'/children/index'
+    else
+      redirect to '/daycare'
+    end
   end
 
-  get '/family/create_children' do
-    erb :'/family/create_children'
+  get '/children/new' do
+    erb :'/children/create_children'
   end
 
-  post '/family/create_children' do
+  get '/daycare/:id' do
+    binding.pry
+    if logged_in?
+      @parents = Parent.find_by_id(params[:id])
+      erb :'parent/show_parent'
+    else
+      redirect to '/'
+    end
+  end
+
+  get '/daycare/:id/edit' do
+    if logged_in?
+      @parents = Parent.find_by_id(params[:id])
+    if @parent && @parent.username == current_user
+        erb :'parent/edit_parent'
+      else
+        redirect to '/daycare'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+  post '/children/create_children' do
     if logged_in?
       if params[:first_name] == "" || params[:last_name] == ""
         redirect to '/family/create_children'
@@ -24,7 +52,7 @@ class FamilyController < ApplicationController
     end
   end
 
-  get '/family/:id' do
+  get '/children/:id' do
     if logged_in?
       @child = Child.find_by_id(params[:id])
       erb :'/family/show_children'
@@ -33,7 +61,7 @@ class FamilyController < ApplicationController
     end
   end
 
-  get '/family/:id/edit' do
+  get '/children/:id/edit' do
     if logged_in?
       @child = Child.find_by_id(params[:id])
       if @child == current_user
@@ -46,7 +74,7 @@ class FamilyController < ApplicationController
     end
   end
 
-    delete '/family/:id/delete' do
+    delete '/children/:id/delete' do
       if logged_in?
           @child = Child.find_by_id(params[:id])
         if @child && @child.first_name == current_user

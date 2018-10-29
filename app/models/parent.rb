@@ -4,4 +4,5 @@ class Parent < ActiveRecord::Base
    belongs_to :daycare
 
    has_secure_password
+   validates :password, length: { in: 6..20, message: "Please add at least 6 characters"}
 end
