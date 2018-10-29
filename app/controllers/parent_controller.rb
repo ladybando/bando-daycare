@@ -3,20 +3,21 @@ class ParentController < ApplicationController
 
   get '/signup' do
     if !logged_in?
-      erb :'/signup', locals: {message: "Please sign up before you sign in!"}
+      erb :'/signup', locals: {message: "No account found! Please sign up before you sign in!"}
     else
       redirect to '/daycare'
     end
   end
 
   post '/signup' do
+    #binding.pry
     parent = Parent.new(:username => params[:username], :password => params[:password], :email => params[:email])
     if parent.save && parent.username!= "" && parent.email!="" && parent.password!=""
-        redirect to '/signup'
-    else
       Parent.create(:username => params[:username], :password => params[:password], :email => params[:email])
-      session[:user_id] = @parent.id
-        redirect to '/daycare'
+      session[:user_id] = parent.id
+      redirect to '/daycare'
+    else
+      redirect to '/signup'
     end
   end
 
@@ -28,13 +29,23 @@ class ParentController < ApplicationController
     end
   end
 
-  get '/parent' do
+  get '/daycare' do
    #binding.pry
     if logged_in?
         @parents = Parent.all
       erb :'/parent/index'
     else
       redirect to '/login'
+    end
+  end
+
+  get '/daycare/:id' do
+
+    if logged_in?
+      @parents = Parent.find_by_id(params[:id])
+      erb :'parent/show_parent'
+    else
+      redirect to '/'
     end
   end
 
@@ -57,13 +68,13 @@ get '/logout' do
    end
  end
 
- delete '/parent/:id/delete' do
-  if logged_in?
-    @child = Child.find_by_id(params[:id])
-    @child == current_user
-    @child.delete
-    redirect '/children'
-  end
+ delete '/daycare/:id/delete' do
+  # if logged_in?
+  #   @child = Child.find_by_id(params[:id])
+  #   @child == current_user
+  #   @child.delete
+  #   redirect '/children'
+  # end
   if logged_in?
     @child = Child.find_by_id(params[:id])
     if @parents && @parents.username == current_user

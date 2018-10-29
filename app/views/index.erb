@@ -1,6 +1,16 @@
 
+
+
 <nav>
-  <br>
-  <h3>Welcome Parents!</h3>
+  <% if logged_in? %>
+  <p>Welcome, <%=current_user.username %></p>
+    <a href="/children/new"> Create Child </a>
+    <a href="/logout"> Log Out </a>
+
+
+  <% else %>
+  <h3>Welcome to Bando Daycare</h3>
   <h4>Please <a href="/signup"> create an account </a> or <a href="/login"> log in</a>. </h4>
-</nav
+  <%end %>
+
+</nav>
