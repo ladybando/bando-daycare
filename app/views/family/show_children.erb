@@ -1,0 +1,9 @@
+<p><%= @child.first_name %> <%= @child.last_name %></p>
+<form method="post" action="/daycare/<%=@child.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Child"><br>
+</form>
+
+<br><a href="/daycare/<%=@child.id%>/edit"> Edit Child </a><br>
+<a href="/daycare"> Home </a><br>
+<a href="/logout"> Log Out </a>

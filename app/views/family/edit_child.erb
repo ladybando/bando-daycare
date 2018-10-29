@@ -1,0 +1,7 @@
+<h2> Edit Child </h2>
+<form method="post" action="/family/<%=@child.id%>">
+  <input type="text" name="name" value="<%= @child.first_name %>">
+  <input type="text" name="name" value="<%= @child.last_name %>">
+  <input type="submit" value="submit">
+</form
+<a href="/family"> Home </a><br>

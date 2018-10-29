@@ -4,48 +4,57 @@ class FamilyController < ApplicationController
     erb :'/family/index'
   end
 
-  get '/family/create_client' do
-    erb :'/family/create_client'
+  get '/family/create_children' do
+    erb :'/family/create_children'
   end
 
-
-  post '/family/create_client' do
-  #  binding.pry
-
+  post '/family/create_children' do
     if logged_in?
-      if params[:first_name] == "" || params[:last_name] == "" || params[:address] == "" || params[:phone_number] == ""
-        redirect to '/family/create_client'
-      else @parents = current_user.parents.create(first_name: params[:first_name], last_name: params[:last_name], address: params[:address], phone_number: params[:phone_number])
-        if @parents.save
-          redirect to "/family/#{@parents.id}"
+      if params[:first_name] == "" || params[:last_name] == ""
+        redirect to '/family/create_children'
+      else @child = current_user.children.create(first_name: params[:first_name], last_name: params[:last_name])
+        if @child.save
+          redirect to "/family/#{@child.id}"
         else
-          redirect to '/family/create_client'
+          redirect to '/family/create_children'
         end
       end
     else
-      redirect to '/family/login'
+      redirect to '/login'
     end
   end
 
   get '/family/:id' do
     if logged_in?
-      @parent = Parent.find_by_id(params[:id])
       @child = Child.find_by_id(params[:id])
-      erb :'/family/show_client'
+      erb :'/family/show_children'
+    else
+      redirect to '/'
+    end
+  end
+
+  get '/family/:id/edit' do
+    if logged_in?
+      @child = Child.find_by_id(params[:id])
+      if @child == current_user
+    erb :'/family/edit_child'
+      else
+        redirect to '/family'
+    end
     else
       redirect to '/login'
     end
   end
- #
- #  delete '/daycare/:id/delete' do
- #   if logged_in?
- #     @parent = Parent.find_by_id(params[:id])
- #     if @parent && @parent.first_name == current_user
- #       @parent.delete
- #     end
- #     redirect to '/family'
- #   else
- #     redirect to '/login'
- #   end
- # end
+
+    delete '/family/:id/delete' do
+      if logged_in?
+          @child = Child.find_by_id(params[:id])
+        if @child && @child.first_name == current_user
+          @child.delete
+        end
+        redirect to '/family'
+      else
+        redirect to '/login'
+      end
+    end
 end

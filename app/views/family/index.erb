@@ -1,27 +1,6 @@
-<h1>Welcome, <%= current_parent.username %></h1>
-<p>This is your parent hub. You can make changes below:</p><br>
+<h1>Welcome, <%= current_user.username %></h1><br>
+<p>This is your parent hub.</p><br>
 
-<br><a href="/family/create_client">Add Child</a>
-<br><a href="/family/show_client">View Child(ren)</a>
-<br><a href="/family/pay_bills">Make Payment</a>
 
-<br><a href="/"> Home </a><br>
-<a href="/logout"> Log Out </a><br>
-
-<% if !logged_in? %>
-   <p> Please sign up or log in below: </p>
-   <%end %>
-    <nav>
-     <% if logged_in? %>
-     <h2>Welcome, Parent</h2><br>
-     <p>Edit or add more children on your Child's Info page,</p>
-       <a href="/family/create_client"> Child Info </a>
-      <p>Make payments,</p>
-       <a href="/family/create_client"> Pay Bills </a>
-       <p>Or log out if you're all set!</p>
-       <a href="/logout"> Log Out </a><br>
-      <% else %>
-       <a href="/signup">Sign Up</a><br>
-       <a href="/login"> Log In </a><br>
-     <%end %>
-    </nav
+<p><a href="/family/create_children"> Add a Child</a></p><br>
+<br><h5>Return <a href="/"> Home</a>, or <a href="/logout"> Log Out </a> if you're all set!</h5>
