@@ -18,8 +18,7 @@ class ChildController < ApplicationController
   end
 
   get '/family/:id' do
-    if logged_in?
-      @child = Child.find_by_id(params[:id])
+  if @child = Child.find_by_id(params[:id])
       erb :'/children/show_children'
     else
       redirect to '/'
@@ -27,8 +26,7 @@ class ChildController < ApplicationController
   end
 
   patch '/family/:id/edit' do
-    if logged_in?
-      @parents = Parent.find_by_id(params[:id])
+    if  @parents = Parent.find_by_id(params[:id])
     if @parent && @parent.username == current_user
         erb :'parent/edit_parent'
       else
@@ -40,18 +38,12 @@ class ChildController < ApplicationController
   end
 
   post '/children/create_children' do
-    if logged_in?
       if params[:first_name] == "" || params[:last_name] == ""
         redirect to '/family/create_children'
-      else @child = current_user.children.create(first_name: params[:first_name], last_name: params[:last_name])
-        if @child.save
+      elsif @child = current_user.children.create(first_name: params[:first_name], last_name: params[:last_name])
           redirect to "/family/#{@child.id}"
         else
           redirect to '/family/create_children'
-        end
-      end
-    else
-      redirect to '/login'
     end
   end
 

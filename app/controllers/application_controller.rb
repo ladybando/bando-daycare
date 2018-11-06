@@ -1,6 +1,8 @@
 require "pry"
 class ApplicationController < Sinatra::Base
+  include ActionController::Base
   register Sinatra::ActiveRecordExtension
+  before_filter :require_login
 
   configure do
   set :public_folder, 'public'
@@ -13,10 +15,19 @@ end
     erb :index
   end
 
-#this helper method will take in the childs age and place them
-#in the correct age group
+  helpers do
+    private
 
-   helpers do
+    def require_login
+      unless logged_in?
+        flash[:error] = "You must be logged in to access this section"
+        render :controller => 'home', :action => 'logout'
+      else
+        # whatever code you need to load from user
+        render :controller => 'home', :action => 'logged_in'
+      end
+    end
+
      def logged_in?
       !!current_user
     end
